@@ -1,22 +1,26 @@
 'use strict';
 
-const gulp = require('gulp');
-const del = require('del');
-const newer = require('gulp-newer');
-const plumber = require('gulp-plumber');
-const rename = require('gulp-rename');
+import gulp from 'gulp';
+import del from 'del';
+import newer from 'gulp-newer';
+import plumber from 'gulp-plumber';
+import rename from 'gulp-rename';
 
-const imagemin = require('gulp-imagemin');
-const svgmin = require('gulp-svgmin');
-const svgstore = require('gulp-svgstore');
+import imagemin from 'gulp-imagemin';
+import svgmin from 'gulp-svgmin';
+import svgstore from 'gulp-svgstore';
 
-const sass = require('gulp-sass');
-const postcss = require('gulp-postcss');
-const autoprefixer = require('autoprefixer');
-const objectFit = require('postcss-object-fit-images');
-const minify = require('gulp-csso');
+import nodeSass from "node-sass"
+import gulpSass from "gulp-sass"
+import postcss from 'gulp-postcss';
+import autoprefixer from 'autoprefixer';
+import objectFit from 'postcss-object-fit-images';
+import minify from 'gulp-csso';
 
-const server = require('browser-sync').create();
+import server from 'browser-sync';
+
+const sass = gulpSass(nodeSass);
+server.create();
 
 gulp.task('clean', function () {
   return del('build');
@@ -124,3 +128,5 @@ gulp.task('serve', function () {
 });
 
 gulp.task('start', gulp.series('build', 'serve'));
+
+export default server
